@@ -1,3 +1,5 @@
+<p align="center">Tell me at @filebone#2450 that this needs to be fixed</p>
+
 <p align="center">
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="/program_info/org.prismlauncher.PrismLauncher.logo-darkmode.svg">
