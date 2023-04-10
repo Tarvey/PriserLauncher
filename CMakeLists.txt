@@ -133,9 +133,9 @@ endif()
 ##################################### Set Application options #####################################
 
 ######## Set URLs ########
-set(Launcher_NEWS_RSS_URL "https://prismlauncher.org/feed/feed.xml" CACHE STRING "URL to fetch Prism Launcher's news RSS feed from.")
-set(Launcher_NEWS_OPEN_URL "https://prismlauncher.org/news" CACHE STRING "URL that gets opened when the user clicks 'More News'")
-set(Launcher_HELP_URL "https://prismlauncher.org/wiki/help-pages/%1" CACHE STRING "URL (with arg %1 to be substituted with page-id) that gets opened when the user requests help")
+set(Launcher_NEWS_RSS_URL "" CACHE STRING "URL to fetch Prism Launcher's news RSS feed from.")
+set(Launcher_NEWS_OPEN_URL "" CACHE STRING "URL that gets opened when the user clicks 'More News'")
+set(Launcher_HELP_URL "" CACHE STRING "URL (with arg %1 to be substituted with page-id) that gets opened when the user requests help")
 
 ######## Set version numbers ########
 set(Launcher_VERSION_MAJOR 7)
@@ -158,19 +158,19 @@ set(Launcher_META_URL "https://meta.prismlauncher.org/v1/" CACHE STRING "URL to 
 set(Launcher_IMGUR_CLIENT_ID "5b97b0713fba4a3" CACHE STRING "Client ID you can get from Imgur when you register an application")
 
 # Bug tracker URL
-set(Launcher_BUG_TRACKER_URL "https://github.com/PrismLauncher/PrismLauncher/issues" CACHE STRING "URL for the bug tracker.")
+set(Launcher_BUG_TRACKER_URL "https://github.com/Tarvey/PriserLauncher/issues" CACHE STRING "URL for the bug tracker.")
 
 # Translations Platform URL
 set(Launcher_TRANSLATIONS_URL "https://hosted.weblate.org/projects/prismlauncher/launcher/" CACHE STRING "URL for the translations platform.")
 
 # Matrix Space
-set(Launcher_MATRIX_URL "https://matrix.to/#/#prismlauncher:matrix.org" CACHE STRING "URL to the Matrix Space")
+set(Launcher_MATRIX_URL "" CACHE STRING "URL to the Matrix Space")
 
 # Discord URL
-set(Launcher_DISCORD_URL "https://discord.gg/prismlauncher" CACHE STRING "URL for the Discord guild.")
+set(Launcher_DISCORD_URL "" CACHE STRING "URL for the Discord guild.")
 
 # Subreddit URL
-set(Launcher_SUBREDDIT_URL "https://www.reddit.com/r/PrismLauncher/" CACHE STRING "URL for the subreddit.")
+set(Launcher_SUBREDDIT_URL "https://www.reddit.com/r/PriserLauncher/" CACHE STRING "URL for the subreddit.")
 
 # Builds
 set(Launcher_FORCE_BUNDLED_LIBS OFF CACHE BOOL "Prevent using system libraries, if they are available as submodules")
@@ -191,7 +191,7 @@ set(Launcher_MSA_CLIENT_ID "c36a9fb6-4f2a-41ff-90bd-ae7cc92031eb" CACHE STRING "
 # https://support.curseforge.com/en/support/solutions/articles/9000207405-curse-forge-3rd-party-api-terms-and-conditions
 # NOTE: CurseForge requires you to change this if you make any kind of derivative work.
 # This key was issued specifically for Prism Launcher
-set(Launcher_CURSEFORGE_API_KEY "$2a$10$wuAJuNZuted3NORVmpgUC.m8sI.pv1tOPKZyBgLFGjxFp/br0lZCC" CACHE STRING "API key for the CurseForge platform")
+set(Launcher_CURSEFORGE_API_KEY "" CACHE STRING "API key for the CurseForge platform")
 
 
 #### Check the current Git commit and branch
