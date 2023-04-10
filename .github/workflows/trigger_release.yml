@@ -38,16 +38,16 @@ jobs:
           echo "VERSION=$tag_name" >> $GITHUB_ENV
       - name: Package artifacts properly
         run: |
-          mv ${{ github.workspace }}/PrismLauncher-source PrismLauncher-${{ env.VERSION }}
-          mv PrismLauncher-Linux-Qt6-Portable*/PrismLauncher-portable.tar.gz PrismLauncher-Linux-Qt6-Portable-${{ env.VERSION }}.tar.gz
-          mv PrismLauncher-Linux-Qt6*/PrismLauncher.tar.gz PrismLauncher-Linux-Qt6-${{ env.VERSION }}.tar.gz          
-          mv PrismLauncher-Linux-Portable*/PrismLauncher-portable.tar.gz PrismLauncher-Linux-Portable-${{ env.VERSION }}.tar.gz
-          mv PrismLauncher-Linux*/PrismLauncher.tar.gz PrismLauncher-Linux-${{ env.VERSION }}.tar.gz
-          mv PrismLauncher-*.AppImage/PrismLauncher-*.AppImage PrismLauncher-Linux-${{ env.VERSION }}-x86_64.AppImage
-          mv PrismLauncher-macOS-Legacy*/PrismLauncher.tar.gz PrismLauncher-macOS-Legacy-${{ env.VERSION }}.tar.gz
-          mv PrismLauncher-macOS*/PrismLauncher.tar.gz PrismLauncher-macOS-${{ env.VERSION }}.tar.gz
+          mv ${{ github.workspace }}/PrismLauncher-source PrismLauncher-${{ github.run_number }}
+          mv PrismLauncher-Linux-Qt6-Portable*/PrismLauncher-portable.tar.gz PrismLauncher-Linux-Qt6-Portable-${{ github.run_number }}.tar.gz
+          mv PrismLauncher-Linux-Qt6*/PrismLauncher.tar.gz PrismLauncher-Linux-Qt6-${{ github.run_number }}.tar.gz          
+          mv PrismLauncher-Linux-Portable*/PrismLauncher-portable.tar.gz PrismLauncher-Linux-Portable-${{ github.run_number }}.tar.gz
+          mv PrismLauncher-Linux*/PrismLauncher.tar.gz PrismLauncher-Linux-${{ github.run_number }}.tar.gz
+          mv PrismLauncher-*.AppImage/PrismLauncher-*.AppImage PrismLauncher-Linux-${{ github.run_number }}-x86_64.AppImage
+          mv PrismLauncher-macOS-Legacy*/PrismLauncher.tar.gz PrismLauncher-macOS-Legacy-${{ github.run_number }}.tar.gz
+          mv PrismLauncher-macOS*/PrismLauncher.tar.gz PrismLauncher-macOS-${{ github.run_number }}.tar.gz
 
-          tar -czf PrismLauncher-${{ env.VERSION }}.tar.gz PrismLauncher-${{ env.VERSION }}
+          tar -czf PrismLauncher-${{ github.run_number }}.tar.gz PrismLauncher-${{ github.run_number }}
 
           for d in PrismLauncher-Windows-MSVC*; do
             cd "${d}" || continue
@@ -59,8 +59,8 @@ jobs:
             test -z "${LEGACY}" || NAME="${NAME}-Legacy"
             test -z "${ARM64}" || NAME="${NAME}-arm64"
             test -z "${PORT}" || NAME="${NAME}-Portable"
-            test -z "${INST}" || mv PrismLauncher-*.exe ../${NAME}-Setup-${{ env.VERSION }}.exe
-            test -n "${INST}" || zip -r -9 "../${NAME}-${{ env.VERSION }}.zip" *
+            test -z "${INST}" || mv PrismLauncher-*.exe ../${NAME}-Setup-${{ github.run_number }}.exe
+            test -n "${INST}" || zip -r -9 "../${NAME}-${{ github.run_number }}.zip" *
             cd ..
           done
 
@@ -70,21 +70,14 @@ jobs:
             PORT="$(echo -n ${d} | grep -o Portable || true)"
             NAME="PrismLauncher-Windows-MinGW-w64"
             test -z "${PORT}" || NAME="${NAME}-Portable"
-            test -z "${INST}" || mv PrismLauncher-*.exe ../${NAME}-Setup-${{ env.VERSION }}.exe
-            test -n "${INST}" || zip -r -9 "../${NAME}-${{ env.VERSION }}.zip" *
+            test -z "${INST}" || mv PrismLauncher-*.exe ../${NAME}-Setup-${{ github.run_number }}.exe
+            test -n "${INST}" || zip -r -9 "../${NAME}-${{ github.run_number }}.zip" *
             cd ..
           done
 
       - name: Create release
         id: create_release
         uses: softprops/action-gh-release@v1
-        runs-on: ubuntu-latest
-        needs: build-project
-        steps:
-          name: Create Release
-          uses: actions/create-release@v1
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ github.ref }}
           release_name: Prism Launcher ${{ github.run_number }}
