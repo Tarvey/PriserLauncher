@@ -1,3 +1,5 @@
+<p align="center">This is a fork of prism launcher made to run servers, im not gonna remove functionality, this might come into prism launcher if i create a pull request</p>
+
 <p align="center">
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="/program_info/org.prismlauncher.PrismLauncher.logo-darkmode.svg">
